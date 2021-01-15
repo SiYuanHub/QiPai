@@ -1,23 +1,21 @@
 <template>
   <div class="home_page">
-    <div class="header">
-
-    </div>
-    <div class="content">
-
-    </div>
+    home_page
   </div>
 </template>
 <script>
 export default {
-  name:"HomePage"
+  name:"homePage",
+  data(){
+    return {
+
+    }
+  },
+  created(){
+    
+  }
 }
 </script>
-<style lang='less' scoped>
-  .header{
-    height: 100px;
-  }
-  .content{
-    height: calc(100% - 100px);
-  }
+<style lang="less" scoped>
+
 </style>
