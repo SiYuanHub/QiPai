@@ -137,7 +137,7 @@ export default {
   }
 }
 </script>
-<style lang="less">
+<style lang="less" scoped>
 .login {
   height: 100%;
   width: 100%;
@@ -151,11 +151,9 @@ export default {
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+    /deep/ .el-form-item__label {color: black !important;}
     .el-form {
       .el-form-item {
-        label {
-          color: black !important;
-        }
         .el-form-item__content {
           margin-left: 120px !important;
         }
