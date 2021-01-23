@@ -11,7 +11,17 @@
             <el-input v-model="form.account"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="form.password"></el-input>
+            <el-input
+              v-model="form.password"
+              :type="pwdType"
+              placeholder="请输入密码"
+            >
+              <i
+                slot="suffix"
+                class="el-icon-view"
+                @click="showPwd"
+              ></i>
+            </el-input>
           </el-form-item>
           <el-form-item>
             <el-button
@@ -34,10 +44,30 @@
             <el-input v-model="form.account"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="form.password"></el-input>
+            <el-input
+              v-model="form.password"
+              :type="pwdType"
+              placeholder="请输入密码"
+            >
+              <i
+                slot="suffix"
+                class="el-icon-view"
+                @click="showPwd"
+              ></i>
+            </el-input>
           </el-form-item>
           <el-form-item label="确认密码">
-            <el-input v-model="form.confirmPassword"></el-input>
+            <el-input
+              v-model="form.confirmPassword"
+              :type="pwdType"
+              placeholder="请输入密码"
+            >
+              <i
+                slot="suffix"
+                class="el-icon-view"
+                @click="showPwd"
+              ></i>
+            </el-input>
           </el-form-item>
           <el-form-item>
             <el-button
@@ -60,6 +90,7 @@ export default {
     return {
       login: false,
       register: true,
+      pwdType: 'password',
       form: {
         account: '',
         password: '',
@@ -104,7 +135,8 @@ export default {
         this.login = false;
         this.register = false;
         window.localStorage.setItem('loginStatus', 'login');
-        this.$store.commit('getUser', this.form.username);
+        this.$store.commit('getUser', this.form.account);
+        this.$store.commit('getLoginStatus',true);
         Message.success('登录成功');
         this.$router.push("/homePage");
         //window.location.href("/homePage");
@@ -117,15 +149,22 @@ export default {
       this.form.account = '';
       this.register = true;
       this.login = false;
+    },
+
+    showPwd () {
+      this.pwdType === 'password' ? this.pwdType = '' : this.pwdType = 'password';
+      let e = document.getElementsByClassName('el-icon-view')[0];
+      this.pwdType == '' ? e.setAttribute('style', 'color: #409EFF') : e.setAttribute('style', 'color: #c0c4cc');
     }
   },
   created () {
     //获取路由中的参数
-    if (this.$route.params.loginStatus === 'logout') {
-      window.localStorage.clear();
-      this.$store.commit('getLoginStatus', false);
-      return;
-    }
+    console.log(this.$route.params.loginStatus);
+    // if (this.$route.params.loginStatus === 'logout') {//加载登录但页面还没有挂载时会调用
+    //   window.localStorage.clear();
+    //   this.$store.commit('getLoginStatus', false);
+    //   return;
+    // }
     const loginStatus = this.$store.state.loginStatus;
     if (loginStatus) {
       this.login = false;
@@ -151,11 +190,18 @@ export default {
     border-radius: 5px;
     padding: 15px;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
-    /deep/ .el-form-item__label {color: black !important;}
     .el-form {
       .el-form-item {
+        /deep/ .el-form-item__label {
+          color: black !important;
+        }
         .el-form-item__content {
           margin-left: 120px !important;
+          .el-input {
+            /deep/ .el-input__suffix {
+              padding-top: 2px;
+            }
+          }
         }
       }
     }
