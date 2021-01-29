@@ -84,6 +84,8 @@
 <script>
 import util from '../../util';
 import { Message } from 'element-ui';
+import source from '../../common/source';
+import getUserIP from '../../common/source';
 export default {
   name: "Login",
   data () {
@@ -91,6 +93,9 @@ export default {
       login: false,
       register: true,
       pwdType: 'password',
+      IpAddress: '',
+      DataType: '7',
+      MachName: '',
       form: {
         account: '',
         password: '',
@@ -130,18 +135,29 @@ export default {
       if (!util.trim(this.form.account) || !util.trim(this.form.password)) {
         Message.warning('账号或密码不能为空');
         return null;
-      }
-      if (password === this.form.password && account === this.form.account) {
-        this.login = false;
-        this.register = false;
-        window.localStorage.setItem('loginStatus', 'login');
-        this.$store.commit('getUser', this.form.account);
-        this.$store.commit('getLoginStatus',true);
-        Message.success('登录成功');
-        this.$router.push("/homePage");
-        //window.location.href("/homePage");
       } else {
-        Message.warning("账号或密码不正确");
+        source({
+          service: 'WebApi',
+          method: 'get',
+          url: `BaseWS.asmx/UserLogin?DataType=${this.DataType}&LoginCode=${this.form.account}&PWD=${this.form.password}&IpAddress=${this.IpAddress}&MachName=${this.MachName}`
+          //data: JSON.stringify(this.state)
+        }, true).then((res) => {
+          console.log(res);
+          if (res.data.Message.ErrCode == "100") {
+            this.login = false;
+            this.register = false;
+            window.localStorage.setItem('account', this.form.account);
+            window.localStorage.setItem('password', this.form.password);
+            window.localStorage.setItem('loginStatus', 'login');
+            this.$store.commit('getUser', this.form.account);
+            this.$store.commit('getLoginStatus', true);
+            Message.success('登录成功');
+            this.$router.push("/homePage");
+            //window.location.href("/homePage");
+          } else {
+            Message.warning("账号或密码不正确");
+          }
+        })
       }
     },
     changeRegister () {
@@ -158,21 +174,29 @@ export default {
     }
   },
   created () {
-    //获取路由中的参数
-    console.log(this.$route.params.loginStatus);
-    // if (this.$route.params.loginStatus === 'logout') {//加载登录但页面还没有挂载时会调用
-    //   window.localStorage.clear();
-    //   this.$store.commit('getLoginStatus', false);
-    //   return;
+    // //获取路由中的参数
+    // console.log(this.$route.params.loginStatus);
+    // // if (this.$route.params.loginStatus === 'logout') {//加载登录但页面还没有挂载时会调用
+    // //   window.localStorage.clear();
+    // //   this.$store.commit('getLoginStatus', false);
+    // //   return;
+    // // }
+    // const loginStatus = this.$store.state.loginStatus;
+    // if (loginStatus) {
+    //   this.login = false;
+    //   this.register = false;
+    //   console.log("您已经是登录状态");
+    //   Message.warning('您已经是登录状态')
+    //   this.$router.push("/homePage");
     // }
-    const loginStatus = this.$store.state.loginStatus;
-    if (loginStatus) {
-      this.login = false;
-      this.register = false;
-      console.log("您已经是登录状态");
-      Message.warning('您已经是登录状态')
-      this.$router.push("/homePage");
-    }
+  },
+  mounted () {
+    getUserIP(IpAddress => {
+      this.IpAddress = IpAddress;
+      // this.setState({
+      //   IpAddress
+      // })
+    })
   }
 }
 </script>

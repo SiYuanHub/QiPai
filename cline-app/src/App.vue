@@ -4,8 +4,12 @@
   </div>
 </template>
 <script>
+import ConfigHelper from './common/ConfigHelper';
 export default {
   name: 'App',
+  created(){
+    ConfigHelper.init();
+  }
 }
 </script>
 

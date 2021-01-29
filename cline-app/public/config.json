@@ -1,0 +1,239 @@
+{
+	"SystemID":"2",
+	"CopyRight":"CopyRight ©2020",
+	"StorageType":"sessionStorage",
+	"AppName":"bealead-hang",
+	"LoginPage":"/",
+	"SystemType":"hanger",
+	"OrderStatusPhotoPath":"http://192.168.0.202:89/upload/target/",
+	"clearOptionPath":"http://192.168.2.203:8013/",
+	"plPhotoPath":"http://192.168.0.225/PDF/",
+	"HangerServiceType":1,
+	"SystemTypeConfig":[
+		{
+			"type":"admin",
+			"name":"Admin"
+		},
+		{
+			"type":"agv",
+			"name":"AGV"
+		}
+	],
+	"Services": {
+		"WebService":"http://192.168.2.203:9051/",
+		"WebApi":"http://192.168.2.203:9094/",
+		"MainService":"http://192.168.2.203:9048/",
+		"HangerBing":"http://192.168.101.4x:85/Integration/customer/sevenbrands/hangerbind",
+		"Mes":"http://mes.etsystem.cn/bmapi/export/nc"
+	},
+
+	
+    "Pages": [
+		{
+			"icon": "/images/icon/basedata.png",
+			"name":"基础资料",
+			"route":"",
+			"child":[
+				{
+					"icon": "/images/icon/site.png",
+					"name": "工作站",
+					"route": "workstation",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+
+				{
+					"icon": "/images/icon/processlist.png",
+					"name": "工艺清单",
+					"route": "processlist",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+
+				{
+					"icon": "/images/icon/toolclass.png",
+					"name": "数据同步",
+					"route": "dataSync",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/toolclass.png",
+					"name": "团订分包",
+					"route": "groupSubcontract",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/architecture.png",
+					"name": "尺寸表架构",
+					"route": "dimensionalArchitecture",
+					"keepAlive": 1,
+					"description":"admin"
+				}
+			]
+		},
+		{
+			"icon": "/images/icon/production.png",
+			"name":"生产管理",
+			"route":"",
+			"child":[
+				{
+					"icon": "/images/icon/hanger.png",
+					"name": "衣架管理",
+					"route": "hangerManagement",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/replace.png",
+					"name": "衣架替换",
+					"route": "replaceHanger",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/tailoring.png",
+					"name": "裁剪信息",
+					"route": "tailoringInformation",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/sizechart.png",
+					"name": "尺码表信息",
+					"route": "sizeChart",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/hangerroute.png",
+					"name": "衣架路线",
+					"route": "hangerRoute",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/workplaceschedule.png",
+					"name": "车间排班",
+					"route": "workplaceSchedule",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/workplacecapacity.png",
+					"name": "车间产能",
+					"route": "workplaceCapacity",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/productionSchdule.png",
+					"name": "生产排程",
+					"route": "productionSchdule",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/workplacecapacity.png",
+					"name": "订单详情",
+					"route": "orderStatus",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/workplacecapacity.png",
+					"name": "工序计划",
+					"route": "processPlan",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/workplacecapacity.png",
+					"name": "计件核算方案",
+					"route": "pieceRateAccountingScheme",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/workplacecapacity.png",
+					"name": "结算单",
+					"route": "settleOrder",
+					"keepAlive": 1,
+					"description":"admin"
+				}
+			]
+		},
+		{
+			"icon": "/images/icon/toolclass.png",
+			"name":"数据分析",
+			"route":"",
+			"child":[
+				{
+					"icon": "/images/icon/yield.png",
+					"name": "产量报表",
+					"route": "yield",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/workplaceschedule.png",
+					"name": "分包日志",
+					"route": "subcontractingLog",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/orderdetail.png",
+					"name": "订单明细报表",
+					"route": "orderDetail",
+					"keepAlive": 1,
+					"description":"hanger"
+				},
+				{
+					"icon": "/images/icon/volumInformation.png",
+					"name": "量体信息报表",
+					"route": "volumInformation",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/cutNumber.png",
+					"name": "大货裁剪清单查询",
+					"route": "cutNumberOrder",
+					"keepAlive": 1,
+					"description":"admin"
+				},
+				{
+					"icon": "/images/icon/cutNumber.png",
+					"name": "条码信息查询",
+					"route": "barcodeInformation",
+					"keepAlive": 1,
+					"description":"hanger"
+				}
+			]
+		},
+		{
+			"icon": "/images/icon/agv.png",
+			"name":"AGV",
+			"route":"",
+			"description":"agv",
+			"child":[
+				{
+					"icon": "/images/icon/upKeep.png",
+					"name": "工位维护",
+					"route": "StationUpkeep",
+					"keepAlive": 1,
+					"description":"agv"
+				},
+				{
+					"icon": "/images/icon/taskListSearch.png",
+					"name": "任务列表查询",
+					"route": "taskListSearch",
+					"keepAlive": 1,
+					"description":"agv"
+				}
+			]
+		}
+	]
+}
